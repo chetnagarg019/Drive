@@ -30,7 +30,7 @@ router.post(
     }
 
     // res.send(errors); database me save
-    const { username,email, password } = req.body;
+    const { username, email, password } = req.body;
 
     const hash = await bcrypt.hash(password, 10);
 
@@ -69,48 +69,44 @@ router.post(
     const { username, password } = req.body;
 
     const user = await User.findOne({
-        username : username
+      username: username,
+    });
 
-    })
-
-    if(!user){
-        return res.status(400).json({
-            message : 'username or password is incorrect',
-        })
+    if (!user) {
+      return res.status(400).json({
+        message: "username or password is incorrect 1",
+      });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password)
+    const isMatch = await bcrypt.compare(password, user.password);
 
-    if(!isMatch) {
-        return res.status(400).json({
-            message : 'username or password is incorrect',
-        })
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "username or password is incorrect 2",
+      });
     }
 
     //email or paas check ho gye h ab tokens genrate
 
-    const token = jwt.sign({
-        userId: user_id,
+    const token = jwt.sign(
+      {
+        userId: user._id,
         email: user.email,
-        username: user.username
+        username: user.username,
+      },
+      process.env.JWT_SECRET,
+    );
 
-    },
-    process.env.JWT_SECRET,
+    //only screen pr dekhne ke liye
 
-)
+    res.cookie('token',token)
+    res.send('Logged in')
 
-//only screen pr dekhne ke liye
-
-res.json({
-    token
-}) 
-
-
-
-
-
+    
   }
 );
+
+
 
 // module.exports = router;
 export default router; //
