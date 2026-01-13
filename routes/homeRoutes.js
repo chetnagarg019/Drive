@@ -5,4 +5,9 @@ router.get("/home", (req,res) => {
     res.render('home');
 });
 
+
+
+
+
+
 export default router;

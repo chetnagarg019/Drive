@@ -16,6 +16,7 @@ const app = express();
 // //for ejs 
 app.set('view engine','ejs');
 app.use(cookieParser())
+app.use("/", uploadRoutes);
 
 
 // //2 bulit in middlware for data read in console 
@@ -45,3 +46,5 @@ app.listen(PORT,() => {
 // middleware/ multer.js  some code insert
 // controller/upload some code 
 //uploadRoutes create in routes
+//npm list cloudinary
+
