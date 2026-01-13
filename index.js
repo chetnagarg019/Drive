@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
 import homeRouter from "./routes/homeRoutes.js";
+import "./config/cloudinary.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 // import User from '../models/user.js'
 
 dotenv.config();
@@ -35,3 +37,11 @@ app.listen(PORT,() => {
     console.log(`Server is running on ${PORT}`);
     
 })
+
+// phle maine .env me teeno chiz copy kri 
+// fr maine config/cloudinary file bnayi usme kuch code likha
+//import kiya cloudinary ko index.js me 
+// or fr npm install multer
+// middleware/ multer.js  some code insert
+// controller/upload some code 
+//uploadRoutes create in routes
